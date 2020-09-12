@@ -36,28 +36,49 @@
     <main class="flex-row justify-space-between">
       
       <div class="container">
-        <div class="col-12 col-md-4">
-          <div class="card">
-            <h3 class="card-header text-uppercase">Search By City</h3>
-            <form id="user-form" class="card-body">
-              <label class="form-label" for="username">City</label>
-              <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-              <button type="submit" class="btn">Get Forecast</button>
-            </form>
+        <div class ="row">
+          <div class="col">
+            <div class="card col-12 col-md-4">
+                <h3 class="card-header text-uppercase">Search By City</h3>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control searchInput" placeholder="Enter City Name"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary bg-primary searchButton" type="submit"
+                            id="button-addon2">Search</button>
+                    </div>
+                  </div>
+
+                  <ul class="list-group">
+
+                  </ul>
+              </div>
+          </div>
+        </div>
+        <div class="col mt-4 mr-5">
+          <div class="card currentWeather pb-2 pt-1">
+              <h5 class="card-title mt-2 text-center">Current Forecast</h5>
           </div>
         </div>
 
-        <ul class="list-group">
+        <div class="row">
+          <div class="col mt-4">
+            
+              <div class="card pb-5 fiveDayForecast pl-5">
 
-        </ul>
-      
-    
-        <div class="col-12 col-md-8">
-          <h2 class="subtitle">Weather Information:<span id="repo-search-term"></span></h2>
-          <div id="weather-info" class="list-group">
+                  <!-- Appends 5 day forecast-->
+                  <h5 class="card-title mt-2 mr-5">5-Day Forecast </h5>
+
+                  <div class="row">
+                      <div class="col fiveDayOne">
+                      </div>
+                  </div>
+
+              </div>
           </div>
-        
         </div>
+      </div>
+
 
         
       </div>
