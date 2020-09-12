@@ -7,64 +7,69 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+    
     <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
+
+
 <body class="flex-column min-100-vh">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/d3bce829f3.js" crossorigin="anonymous"></script>
+
     <header class="hero">
       <h1 class="app-title">Weather Dashboard</h1>
     </header>
   
   
     <main class="flex-row justify-space-between">
-  
-      <div class="col-12 col-md-4">
-        <div class="card">
-          <h3 class="card-header text-uppercase">Search by City:</h3>
-          <form id="user-form" class="card-body">
-
-            <form id="user-form" class="card-body"></form>
-              <span id="todo-item"> City: <input id="to-do" type="text"/>
-              <button
-              id="add-to-do"
-              value="Get Weather Information"
-              type="submit"
-              autofocus="true"
-              class="btn">Get Weather Information</button>
-              </span>
-          </form>
-        </div>
-        <div class="mt-5 row">
-          <div class="col-12">
-              <div id="to-dos" style="width: 18rem;">
-                  <ul id="history" class="list-group list-group-flush">
-
-                    <div id="to-dos"></div>
-                  </ul>
-              </div>
+      
+      <div class="container">
+        <div class="col-12 col-md-4">
+          <div class="card">
+            <h3 class="card-header text-uppercase">Search By City</h3>
+            <form id="user-form" class="card-body">
+              <label class="form-label" for="username">City</label>
+              <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+              <button type="submit" class="btn">Get Forecast</button>
+            </form>
           </div>
-      </div>
-      </div>
+        </div>
+
+        <ul class="list-group">
+
+        </ul>
       
     
-      <div class="col-12 col-md-8">
-        <h2 class="subtitle">Weather Information: <span id="repo-search-term"></span></h2>
-        <div id="weather-info" class="list-group">
-
+        <div class="col-12 col-md-8">
+          <h2 class="subtitle">Weather Information:<span id="repo-search-term"></span></h2>
+          <div id="weather-info" class="list-group">
+          </div>
+        
         </div>
+
         
       </div>
   
     </main>
+    <!-- add script at the bottom of the body -->
+    <script src="./assets/js/script.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
   
-    <!-- add script at the bottom of the body -->
-   <script src="./assets/js/script.js"></script>
+
   </body>
   
 </html>
