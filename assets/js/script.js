@@ -3,6 +3,8 @@ var searchButton = $(".searchButton");
 
 var apiUrl = "918084d8060d50df0258a5c8181d86ec";
 
+var searchHistory = [];
+
 var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
   console.log(searchHistory);
 
@@ -10,11 +12,13 @@ var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
 
 function loadHistory(){
+
   for(var i = 0; i < searchHistory.length; i++){
 
     var cityName = $(".list-group").addClass("list-group-item");
     cityName.attr("data-index", searchHistory[i]);
-    cityName.append("<li>" + searchHistory[i] + "</li>");
+    cityName.setAtribute(href, "#")
+    cityName.append("<button class='buttons' href = '#'>" + searchInput + "</button>");
     
   }
 }
@@ -22,23 +26,32 @@ function loadHistory(){
 
 var keyCount = 0;
 
-searchButton.click(function(){
+function getData(searchInput){
+console.log("inside getData; " + searchInput);
 
 
+var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
+  if (storedCities !== null) {
+    searchHistory = storedCities;
 
-  var searchInput = $(".searchInput").val();
+  // var searchInput = $(".searchInput").val();
 
-  var cityName = $(".list-group").addClass("list-group-item");
-    cityName.attr("data-index", searchInput);
-    cityName.append("<li>" + searchInput + "</li>");
+  for (var i =0; i < searchHistory.length; i++) {
 
-
+    var cityName = $(".list-group").addClass("list-group-item");
+      cityName.attr("data-index", searchInput);
+      cityName.append("<button class='buttons' href = '#'>" + searchInput + "</button>");
+      cityName.append("<br>"); 
+    }
+  }
+    
 
     // Variable for current weather working 
     var urlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiUrl + "&units=imperial";
 
     // Variable for 5 day forecast working
     var urlFiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiUrl + "&units=imperial";
+    
 
   if (searchInput == ""){
     console.log(searchInput);
@@ -48,6 +61,14 @@ searchButton.click(function(){
       method: "GET"
     }).then(function(response){
 
+
+      if(!searchHistory.includes(searchInput)){
+
+      var cityName = $(".list-group").addClass("list-group-item");
+      cityName.attr("data-index", searchInput);
+      cityName.append("<button class='buttons' href = '#'>" + searchInput + "</button>");
+      cityName.append("<br>"); 
+      }
       keyCount = keyCount + 1;
 
             // Start Current Weather append 
@@ -85,7 +106,9 @@ searchButton.click(function(){
                 currentTemp.append(currentUV);
                 // currentUV.append("UV Index: " + response.value);
             });
-
+          searchHistory.push(searchInput);
+          console.log(searchHistory);
+            
         });
 
         // Start call for 5-day forecast 
@@ -103,12 +126,33 @@ searchButton.click(function(){
                 var FiveDayTimeUTC1 = new Date(response.list[i].dt * 1000);
                 FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-US");
 
-                fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
+                fiveDayDiv.append("<div class=weekendForecast>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
 
 
             })
 
         });
+    }
+
+}
+
+var cityName = $(".list-group").addClass("list-group-item");
+$("#searchItems").on("click", function(e){
+  console.log(e.target.innerHTML);
+  getData(e.target.innerHTML);
+});
+
+$("#button-addon2").on("click", function(){
+  var cityInfo = $("#cityText").val();
+  console.log(cityInfo);
+  getData(cityInfo);
+});
+
+var input = document.getElementsByClassName("searchInput")[0];
+input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("button-addon2").click();
     }
 });
 
