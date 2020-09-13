@@ -5,8 +5,6 @@ var apiUrl = "918084d8060d50df0258a5c8181d86ec";
 
 var searchHistory = [];
 
-var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-  console.log(searchHistory);
 
 
 
@@ -31,7 +29,7 @@ console.log("inside getData; " + searchInput);
 
 
 var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
-  if (storedCities !== null) {
+  if (storedCities.length > 0) {
     searchHistory = storedCities;
 
   // var searchInput = $(".searchInput").val();
@@ -68,7 +66,9 @@ var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
       cityName.attr("data-index", searchInput);
       cityName.append("<button class='buttons' href = '#'>" + searchInput + "</button>");
       cityName.append("<br>"); 
+      searchHistory.push(searchInput);
       }
+
       keyCount = keyCount + 1;
 
             // Start Current Weather append 
@@ -105,9 +105,8 @@ var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
                 currentUV.addClass("UV");
                 currentTemp.append(currentUV);
                 // currentUV.append("UV Index: " + response.value);
+                
             });
-          searchHistory.push(searchInput);
-          console.log(searchHistory);
             
         });
 
@@ -134,16 +133,18 @@ var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
         });
     }
 
-}
+};
 
 var cityName = $(".list-group").addClass("list-group-item");
 $("#searchItems").on("click", function(e){
+  $("#cityText").val("");
   console.log(e.target.innerHTML);
   getData(e.target.innerHTML);
 });
 
 $("#button-addon2").on("click", function(){
   var cityInfo = $("#cityText").val();
+  $("#cityText").val("");
   console.log(cityInfo);
   getData(cityInfo);
 });
