@@ -127,7 +127,6 @@ var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
 
                 fiveDayDiv.append("<div class=weekendForecast>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
 
-
             })
 
         });
