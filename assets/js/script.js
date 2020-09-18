@@ -25,7 +25,7 @@ function getData(searchInput){
 console.log("inside getData; " + searchInput);
 
 
-var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
+var storedCities = JSON.parse(localStorage.getItem("searchHistory")) || [];
   if (storedCities.length > 0) {
     searchHistory = storedCities;
 
